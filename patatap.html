@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="paper-full.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/circle.css"></script>
+    <title>Patatap</title>
+
+    <script type="text/paperscript" canvas="myCanvas">
+     
+     
+     var circles = [];
+      function onKeyDown(event) {
+	    // When a key is pressed, create a circle with the given color and coordinates
+      
+     //create a random point for our circles
+      var max = new Point(view.size.width, view.size.height);
+
+
+      //generates a Point object between 0 and 1, so both x and y are between 0 and 2
+      var rand = Point.random();
+
+      //random coordinates generated
+      var coordinates = max*rand;
+      var newCircle = new Path.Circle(coordinates, 50);
+      newCircle.fillColor="orange";
+      circles.push(newCircle);
+      }
+
+
+function onFrame(event) {
+  
+  for (var i=0;i<circles.length;i++)
+   {
+     console.log(circles[i]);
+      // Each frame, change the fill color of the path slightly by
+	    // adding 1 to its hue:
+     circles[i].fillColor.hue+=1;
+
+     //change the size with frame
+     circles[i].scale(.9);
+   }
+  
+  
+}
+
+     
+    </script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" resize></canvas>
+
+    
+  </body>
+</html>
